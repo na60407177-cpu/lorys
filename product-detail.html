@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LORY'S — 商品資訊</title>
+    <meta name="description" content="LORY'S 素面 T 恤系列，嚴選優質純棉，講究每一處剪裁。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              carbon: "#1A1A1A",
+              mist: "#F9F9F9"
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "serif"],
+              sans: ["Inter", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="font-sans antialiased text-carbon bg-white">
+    <header class="sticky top-0 z-30 border-b border-neutral-200/80 bg-white/90 backdrop-blur relative">
+      <div class="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+        <div class="flex items-center gap-4">
+          <button
+            id="menu-toggle"
+            class="lg:hidden text-[11px] tracking-[0.22em]"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            MENU
+          </button>
+          <a href="index.html" class="font-display text-xl font-bold uppercase tracking-[0.2em] text-carbon transition hover:opacity-60 md:text-[1.35rem]">
+            LORY'S
+          </a>
+        </div>
+
+        <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-[11px] tracking-[0.22em] lg:flex" aria-label="主要導覽">
+          <a class="nav-link" href="index.html#new">新品上市</a>
+          <a class="nav-link" href="index.html#shop">所有商品</a>
+          <a class="nav-link" href="index.html#essentials">商品特色</a>
+          <a class="nav-link" href="index.html#about">品牌故事</a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <button id="search-toggle" class="p-1 text-carbon hover:opacity-60" aria-label="搜尋">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.4" stroke="currentColor" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z" />
+            </svg>
+          </button>
+          <button data-open-cart class="relative p-1 text-carbon hover:opacity-60" aria-label="開啟購物袋">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.4" stroke="currentColor" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6.75a3.75 3.75 0 1 0-7.5 0v3.75M4.5 8.25h15l-.9 11.25a1.5 1.5 0 0 1-1.5 1.38H6.9a1.5 1.5 0 0 1-1.5-1.38L4.5 8.25Z" />
+            </svg>
+            <span
+              data-cart-count
+              class="absolute -right-1 -top-1 hidden min-w-[1.05rem] rounded-full bg-[#b42318] px-1 text-center text-[9px] font-medium leading-4 text-white"
+              >0</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <div id="search-panel" class="search-panel border-t border-neutral-200 bg-white px-5 py-4 md:px-8">
+        <div class="mx-auto max-w-7xl">
+          <input
+            id="search-input"
+            type="search"
+            placeholder="搜尋商品"
+            class="w-full border-b border-neutral-300 bg-transparent py-2 text-sm outline-none placeholder:text-neutral-400"
+          />
+          <div id="search-results"></div>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="mobile-panel border-t border-neutral-200 bg-white lg:hidden">
+        <nav class="flex flex-col gap-4 px-5 py-6 text-[12px] tracking-[0.22em]">
+          <a href="index.html#new">新品上市</a>
+          <a href="index.html#shop">所有商品</a>
+          <a href="index.html#essentials">商品特色</a>
+          <a href="index.html#about">品牌故事</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16">
+      <p class="mb-8 text-[11px] tracking-[0.18em] text-neutral-500">
+        <a href="index.html" class="hover:text-carbon">首頁</a>
+        <span class="mx-2">/</span>
+        <a href="index.html#shop" class="hover:text-carbon">所有商品</a>
+        <span class="mx-2">/</span>
+        <span>商品資訊</span>
+      </p>
+      <div id="product-detail"></div>
+    </main>
+
+    <footer class="mt-10 border-t border-neutral-200 bg-white">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 md:px-8">
+        <div class="md:col-span-2">
+          <p class="font-display text-lg font-bold uppercase tracking-[0.2em]">LORY'S</p>
+          <p class="mt-4 max-w-sm text-sm leading-6 text-neutral-500">
+            訂閱 LORY'S 電子報，掌握新品、補貨與品牌近況。
+          </p>
+          <form id="newsletter-form" class="mt-6 flex max-w-md border-b border-carbon">
+            <input
+              type="email"
+              required
+              placeholder="電子郵件地址"
+              class="flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-neutral-400"
+            />
+            <button type="submit" class="text-[11px] tracking-[0.2em]">訂閱</button>
+          </form>
+        </div>
+        <div>
+          <p class="text-[11px] tracking-[0.22em]">顧客服務</p>
+          <ul class="mt-4 space-y-3 text-sm text-neutral-600">
+            <li><a class="hover:text-carbon" href="index.html#returns">退換貨說明</a></li>
+            <li><a class="hover:text-carbon" href="index.html#shipping">配送資訊</a></li>
+            <li><a class="hover:text-carbon" href="index.html#care">衣物保養</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-[11px] tracking-[0.22em]">追蹤我們</p>
+          <ul class="mt-4 space-y-3 text-sm text-neutral-600">
+            <li><a class="hover:text-carbon" href="#">Instagram</a></li>
+            <li><a class="hover:text-carbon" href="#">Pinterest</a></li>
+            <li><a class="hover:text-carbon" href="#">LINE</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="px-5 pb-10 text-center text-[11px] tracking-[0.14em] text-neutral-400 md:px-8">
+        版權所有 © 2026 LORY'S
+      </p>
+    </footer>
+
+    <script src="js/data.js?v=6"></script>
+    <script src="js/cart.js?v=3"></script>
+    <script src="js/ui.js?v=3"></script>
+    <script src="js/app.js?v=6"></script>
+  </body>
+</html>
