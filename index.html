@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="page.homeTitle">LORY'S — 剛剛好的素面 T 恤</title>
+    <meta name="description" content="以優質純棉打造，陪伴日常的重磅 T 恤。簡約剪裁，舒適合身。" data-i18n-content="page.homeDescription" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              carbon: "#1A1A1A",
+              mist: "#F9F9F9"
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "serif"],
+              sans: ["Inter", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="font-sans antialiased text-carbon bg-white">
+    <header class="sticky top-0 z-30 border-b border-neutral-200/80 bg-white/90 backdrop-blur relative">
+      <div class="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+        <div class="flex items-center gap-4">
+          <button
+            id="menu-toggle"
+            class="lg:hidden text-[11px] tracking-[0.22em]"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            MENU
+          </button>
+          <a href="index.html#home" aria-label="返回首頁" data-i18n-aria-label="nav.home" class="font-display text-xl font-bold uppercase tracking-[0.2em] text-carbon transition hover:opacity-60 md:text-[1.35rem]">
+            LORY'S
+          </a>
+        </div>
+
+        <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-[11px] tracking-[0.22em] lg:flex" aria-label="主要導覽" data-i18n-aria-label="nav.primary">
+          <a class="nav-link" href="#new" data-i18n="nav.new">新品上市</a>
+          <a class="nav-link" href="#shop" data-i18n="nav.shop">所有商品</a>
+          <a class="nav-link" href="#essentials" data-i18n="nav.features">商品特色</a>
+          <a class="nav-link" href="#about" data-i18n="nav.about">品牌故事</a>
+          <a class="nav-link whitespace-nowrap" href="#customer-service" data-i18n="nav.faq">常見問題</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button id="language-toggle" class="whitespace-nowrap px-1 text-[10px] tracking-wide text-carbon hover:opacity-60" type="button" aria-label="切換語言" data-i18n-aria-label="language.label" data-i18n="language.toggle">English</button>
+          <label class="sr-only" for="currency-select" data-i18n="currency.label">選擇貨幣</label>
+          <select id="currency-select" class="w-12 shrink-0 bg-transparent text-[10px] tracking-wide text-carbon outline-none sm:w-auto" aria-label="選擇貨幣" data-i18n-aria-label="currency.label">
+            <option value="TWD">TWD</option>
+            <option value="USD">USD</option>
+            <option value="JPY">JPY</option>
+            <option value="HKD">HKD</option>
+            <option value="SGD">SGD</option>
+            <option value="MYR">MYR</option>
+          </select>
+          <button id="search-toggle" class="p-1 text-carbon hover:opacity-60" aria-label="搜尋" data-i18n-aria-label="search.label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.4" stroke="currentColor" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z" />
+            </svg>
+          </button>
+          <button data-open-cart class="relative p-1 text-carbon hover:opacity-60" aria-label="開啟購物袋" data-i18n-aria-label="cart.open">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.4" stroke="currentColor" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6.75a3.75 3.75 0 1 0-7.5 0v3.75M4.5 8.25h15l-.9 11.25a1.5 1.5 0 0 1-1.5 1.38H6.9a1.5 1.5 0 0 1-1.5-1.38L4.5 8.25Z" />
+            </svg>
+            <span
+              data-cart-count
+              class="absolute -right-1 -top-1 hidden min-w-[1.05rem] rounded-full bg-[#b42318] px-1 text-center text-[9px] font-medium leading-4 text-white"
+              >0</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <p id="storefront-status" class="hidden mx-auto max-w-7xl px-5 pb-2 text-[11px] text-neutral-500 md:px-8" role="status" aria-live="polite"></p>
+
+      <div id="search-panel" class="search-panel border-t border-neutral-200 bg-white px-5 py-4 md:px-8">
+        <div class="mx-auto max-w-7xl">
+          <input
+            id="search-input"
+            type="search"
+            placeholder="搜尋商品"
+            data-i18n-placeholder="search.placeholder"
+            class="w-full border-b border-neutral-300 bg-transparent py-2 text-sm outline-none placeholder:text-neutral-400"
+          />
+          <div id="search-results"></div>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="mobile-panel border-t border-neutral-200 bg-white lg:hidden">
+        <nav class="flex flex-col gap-4 px-5 py-6 text-[12px] tracking-[0.22em]">
+          <a href="#new" data-i18n="nav.new">新品上市</a>
+          <a href="#shop" data-i18n="nav.shop">所有商品</a>
+          <a href="#essentials" data-i18n="nav.features">商品特色</a>
+          <a href="#about" data-i18n="nav.about">品牌故事</a>
+          <a href="#customer-service" data-i18n="nav.faq">常見問題</a>
+        </nav>
+      </div>
+    </header>
+
+    <section id="home" class="relative min-h-[88vh] overflow-hidden bg-mist">
+      <img
+        src="assets/hero-lorys.jpg"
+        alt="LORY'S logo T-shirts in cream and gray"
+        data-i18n-alt="hero.imageAlt"
+        class="absolute inset-0 h-full w-full object-cover object-center grayscale-[18%] contrast-[0.96]"
+      />
+      <div class="hero-overlay absolute inset-0"></div>
+      <div class="relative mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:px-8 md:pb-0">
+        <div class="max-w-xl">
+          <p class="text-[11px] tracking-[0.28em] text-neutral-600" data-i18n="hero.eyebrow">LORY'S 日常基本款</p>
+          <h1 class="mt-4 font-display text-4xl font-bold leading-tight tracking-wide text-carbon sm:text-5xl md:text-6xl">
+            <span data-i18n="hero.line1">剛剛好的</span><br /><span data-i18n="hero.line2">素面 T 恤。</span>
+          </h1>
+          <p class="mt-6 max-w-md text-sm leading-7 text-neutral-700" data-i18n="hero.description">
+            嚴選重磅純棉，為日常穿著而生。簡約不繁複，只為恰到好處的版型與質感。
+          </p>
+          <a
+            href="#shop"
+            class="mt-8 inline-block bg-carbon px-8 py-3.5 text-[11px] tracking-[0.22em] text-white transition hover:bg-neutral-600"
+            data-i18n="hero.shop"
+          >
+            探索全系列
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="new" class="sr-only" aria-hidden="true"></section>
+
+    <section id="shop" class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+      <div class="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="text-[11px] tracking-[0.28em] text-neutral-500" data-i18n="collection.eyebrow">精選系列</p>
+          <h2 class="mt-2 font-display text-3xl font-bold tracking-wide" data-i18n="collection.title">日常基本款</h2>
+        </div>
+        <p class="max-w-sm text-sm leading-6 text-neutral-500" data-i18n="collection.description">
+          四種版型，三款色選。回歸純粹，耐穿、耐洗，值得珍藏。
+        </p>
+      </div>
+      <div id="product-grid" class="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </section>
+
+    <section id="essentials" class="border-y border-neutral-200 bg-mist">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-3 md:px-8 md:py-20">
+        <article class="text-center">
+          <svg class="mx-auto h-8 w-8 text-carbon" fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1">
+            <circle cx="16" cy="16" r="11" />
+            <path d="M16 9v8l5 3" />
+          </svg>
+          <h3 class="mt-5 text-sm tracking-[0.22em]" data-i18n="feature.cotton.title">嚴選優質純棉</h3>
+          <p class="mt-2 text-[11px] text-neutral-500" data-i18n="feature.cotton.description">採用長纖棉，經水洗處理，觸感柔和舒適。</p>
+        </article>
+        <article class="text-center">
+          <svg class="mx-auto h-8 w-8 text-carbon" fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1">
+            <path d="M8 12h16M8 16h16M10 20h12" />
+            <rect x="7" y="8" width="18" height="16" rx="2" />
+          </svg>
+          <h3 class="mt-5 text-sm tracking-[0.22em]" data-i18n="feature.collar.title">耐穿不易變形領口</h3>
+          <p class="mt-2 text-[11px] text-neutral-500" data-i18n="feature.collar.description">加密羅紋設計，反覆穿著依然維持俐落有型。</p>
+        </article>
+        <article class="text-center">
+          <svg class="mx-auto h-8 w-8 text-carbon" fill="none" viewBox="0 0 32 32" stroke="currentColor" stroke-width="1">
+            <path d="M8 22 16 8l8 14H8Z" />
+          </svg>
+          <h3 class="mt-5 text-sm tracking-[0.22em]" data-i18n="feature.weight.title">重磅有型，不易透膚</h3>
+          <p class="mt-2 text-[11px] text-neutral-500" data-i18n="feature.weight.description">厚實布料兼具挺度與舒適，不僵硬、不透膚。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="mx-auto max-w-3xl px-5 py-24 text-center md:px-8">
+      <p class="text-[11px] tracking-[0.28em] text-neutral-500" data-i18n="about.eyebrow">關於 LORY'S</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-wide" data-i18n="about.title">布料純粹，版型歷久彌新。</h2>
+      <p class="mt-6 text-sm leading-7 text-neutral-600" data-i18n="about.description">
+        LORY'S 將簡約化為日常。我們以優質純棉打造俐落剪裁的素面 T 恤，不追逐標誌與季節潮流。
+        融合自在舒適與細緻工藝，穿上後自然合身、自在無拘。
+      </p>
+    </section>
+
+    <section id="recently-viewed" class="hidden border-t border-neutral-200">
+      <div class="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+        <div class="mb-10">
+          <p class="text-[11px] tracking-[0.28em] text-neutral-500" data-i18n="recent.eyebrow">瀏覽紀錄</p>
+          <h2 class="mt-2 font-display text-3xl font-bold tracking-wide" data-i18n="recent.title">最近瀏覽</h2>
+          <p class="mt-3 text-sm text-neutral-500" data-i18n="recent.description">回顧看過的款式，方便再次查看與比較。</p>
+        </div>
+        <div id="recently-viewed-grid" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4"></div>
+      </div>
+    </section>
+
+    <footer class="border-t border-neutral-200 bg-white">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 md:px-8">
+        <div class="md:col-span-2">
+          <p class="font-display text-lg font-bold uppercase tracking-[0.2em]">LORY'S</p>
+          <p class="mt-4 max-w-sm text-sm leading-6 text-neutral-500" data-i18n="newsletter.description">
+            訂閱 LORY'S 電子報，掌握新品、補貨與品牌近況。
+          </p>
+          <form id="newsletter-form" class="mt-6 flex max-w-md border-b border-carbon">
+            <input
+              type="email"
+              required
+              placeholder="電子郵件地址"
+              data-i18n-placeholder="newsletter.placeholder"
+              class="flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-neutral-400"
+            />
+            <button type="submit" class="text-[11px] tracking-[0.2em]" data-i18n="newsletter.submit">訂閱</button>
+          </form>
+        </div>
+        <div id="customer-service" class="scroll-mt-24">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between text-left text-[11px] tracking-[0.22em]"
+            data-faq-toggle
+            data-i18n-aria-label="footer.faq.toggle"
+            aria-controls="customer-service-faq"
+            aria-expanded="false"
+          >
+            <span data-i18n="footer.care">常見問題</span>
+            <svg aria-hidden="true" focusable="false" class="h-4 w-4 transition-transform" data-faq-arrow viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+          <div id="customer-service-faq" class="mt-4 space-y-1" hidden>
+            <details id="returns" class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.returns.question">退換貨說明</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.returns.answer">商品未穿著且吊牌完整，於 14 天內可申請免費換貨。</p>
+            </details>
+            <details id="shipping" class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.dispatch.question">出貨／配送時間</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.dispatch.answer">台灣本島標準配送約 2 至 4 個工作天；實際出貨日依訂單安排為準。</p>
+            </details>
+            <details class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.shipping.question">運費計算</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.shipping.answer">訂單滿 NT$3,000 即享免運；未達門檻時，運費會於結帳前顯示。</p>
+            </details>
+            <details class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.payment.question">付款方式</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.payment.answer">提供信用卡、銀行轉帳、LINE Pay，以及限台灣地區的貨到付款。</p>
+            </details>
+            <details class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.tracking.question">訂單進度查詢</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.tracking.answer">請透過線上客服並提供訂單編號查詢；客服聯絡資訊將另行公告。</p>
+            </details>
+            <details class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.support.question">聯絡線上客服</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.support.answer">線上客服聯絡資訊將另行公告，敬請留意。</p>
+            </details>
+            <details id="care" class="group border-b border-neutral-200 py-3">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm text-neutral-700">
+                <span data-i18n="faq.garment.question">衣物保養</span>
+                <svg aria-hidden="true" focusable="false" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-neutral-500" data-i18n="faq.garment.answer">請翻面冷水洗滌，平放晾乾，避免使用烘衣機。</p>
+            </details>
+          </div>
+        </div>
+        <div>
+          <p class="text-[11px] tracking-[0.22em]" data-i18n="footer.follow">追蹤我們</p>
+          <ul class="mt-4 space-y-3 text-sm text-neutral-600">
+            <li>
+              <a class="inline-flex items-center gap-2 hover:text-carbon" href="#">
+                <svg aria-hidden="true" focusable="false" class="h-[18px] w-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.7" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2 hover:text-carbon" href="#">
+                <svg aria-hidden="true" focusable="false" class="h-[18px] w-[18px] shrink-0" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="11" fill="#E60023" />
+                  <path fill="#fff" d="M12.7 5.1c-3.1 0-4.7 2.2-4.7 4.2 0 1.2.5 2.3 1.5 2.7.2.1.4 0 .4-.2l.2-.8c.1-.2 0-.3-.1-.5-.3-.4-.5-.9-.5-1.6 0-2 1.5-3.8 3.9-3.8 2.1 0 3.3 1.3 3.3 3.1 0 2.3-1 4.2-2.4 4.2-.8 0-1.4-.7-1.2-1.6.2-1 .7-2.1.7-2.8 0-.6-.3-1.1-.9-1.1-.7 0-1.3.8-1.3 1.9 0 .7.2 1.2.2 1.2l-.9 3.8c-.3 1.1 0 2.5 0 2.6.1.1.2.1.3 0 .1-.2 1-1.2 1.3-2.3l.5-2c.3.6 1.1 1.1 2 1.1 2.7 0 4.5-2.5 4.5-5.8 0-2.5-2.1-4.8-5.5-4.8Z" transform="translate(-1 -0.5) scale(.92)" />
+                </svg>
+                <span>Pinterest</span>
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2 hover:text-carbon" href="#">
+                <svg aria-hidden="true" focusable="false" class="h-[18px] w-[18px] shrink-0" viewBox="0 0 24 24">
+                  <path fill="#06C755" d="M12 2C6.5 2 2 5.7 2 10.2c0 2.5 1.4 4.8 3.7 6.3l-.9 3.3c-.1.4.3.7.7.5l3.9-2.1c.8.2 1.7.3 2.6.3 5.5 0 10-3.7 10-8.3S17.5 2 12 2Z" />
+                  <text x="12" y="12.2" fill="#fff" font-size="5.2" font-weight="700" text-anchor="middle" dominant-baseline="middle">LINE</text>
+                </svg>
+                <span>LINE</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mx-auto max-w-7xl border-t border-neutral-100 px-5 py-8 text-sm leading-7 text-neutral-500 md:px-8">
+        <p class="mt-2" data-i18n="currency.note">外幣金額依線上匯率估算，僅供參考；實際結帳金額以新台幣計價。</p>
+        <a class="mt-1 inline-block text-[11px] underline underline-offset-2" href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" data-i18n="currency.attribution">匯率資料來源：Exchange Rate API</a>
+      </div>
+      <p class="px-5 pb-10 text-center text-[11px] tracking-[0.14em] text-neutral-400 md:px-8">
+        <span data-i18n="footer.copyright">版權所有 © 2026 LORY'S</span>
+      </p>
+    </footer>
+
+    <script src="js/storefront.js?v=3"></script>
+    <script src="js/data.js?v=9"></script>
+    <script src="js/cart.js?v=5"></script>
+    <script src="js/ui.js?v=5"></script>
+    <script src="js/app.js?v=10"></script>
+  </body>
+</html>
